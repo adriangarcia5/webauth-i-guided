@@ -52,5 +52,14 @@ server.get('/api/users', (req, res) => {
     .catch(err => res.send(err));
 });
 
+server.get('/hash', (req, res) => {
+  // read a password from the Authorization header
+  // return an object with the password hashed using bcryptjs
+  // { hash: '970(&(:OHKJHIY*HJKH(*^)*&YLKJBLKJGHIUGH(*P' }
+  var bcrypt = require('bcryptjs');
+  var salt = bcrypt.genSaltSync(10);
+  var hash = bcrypt.hashSync("970(&(:OHKJHIY*HJKH(*^)*&YLKJBLKJGHIUGH(*P", salt);
+});
+
 const port = process.env.PORT || 5000;
 server.listen(port, () => console.log(`\n** Running on port ${port} **\n`));
